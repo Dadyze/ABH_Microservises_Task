@@ -1,0 +1,19 @@
+# Use the official Node.js image as the base image
+FROM node
+
+# Clone repository
+WORKDIR /app
+RUN git clone --depth 1 https://github.com/kkenan/basic-microservices && \
+    mv basic-microservices/node-app ./ && \
+    rm -rf basic-microservices
+
+
+# Build the Node app
+WORKDIR /app/node-app
+RUN npm install
+
+# Expose the port that the app runs on
+EXPOSE 8081
+
+# Start the application
+CMD ["node", "index.js"]
