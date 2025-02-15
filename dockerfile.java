@@ -18,4 +18,5 @@ FROM openjdk:8
 WORKDIR /app
 COPY --from=builder /app/spring-boot-app/target/spring-boot-app-*.jar app.jar
 EXPOSE 8080
+ENV APP_NODE_URL=http://node-app:8081/
 CMD ["java", "-jar", "app.jar"]
